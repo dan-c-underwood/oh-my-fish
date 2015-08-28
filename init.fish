@@ -43,12 +43,13 @@ end
 for path in $OMF_PATH/lib $OMF_PATH/lib/git $paths $theme $custom
   contains -- (basename $path) $ignore; and continue
   autoload $path $path/completions
-  source $path/(basename $path).fish
+  test -f $path/(basename $path); and source $path/(basename $path).fish
     and emit init_(basename $path) $path
 end
 
 autoload $OMF_CUSTOM/functions
 autoload $user_function_path
 
-source {$OMF_PATH,$OMF_CUSTOM}/events.fish
-source $OMF_CUSTOM/init.fish
+test -f $OMF_PATH/events.fish; and source $OMF_PATH/events.fish
+test -f $OMF_CUSTOM/events.fish; and source $OMF_CUSTOM/events.fish
+test -f $OMF_CUSTOM/init.fish; and source $OMF_CUSTOM/init.fish

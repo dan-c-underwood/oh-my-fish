@@ -43,7 +43,7 @@ end
 for path in $OMF_PATH/lib $OMF_PATH/lib/git $paths $theme $custom
   contains -- (basename $path) $ignore; and continue
   autoload $path $path/completions
-  test -f $path/(basename $path); and source $path/(basename $path).fish
+  test -f $path/(basename $path).fish; and source $path/(basename $path).fish
     and emit init_(basename $path) $path
 end
 
